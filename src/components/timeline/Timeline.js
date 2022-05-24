@@ -13,7 +13,14 @@ function Timeline() {
             {/* TweetBox */}
             <TweetBox />
             {/* Post */}
-            <Post />
+            <Post
+                displayName="テストテスト"
+                username="testtest"
+                verified={true}
+                text="始めてのツイート"
+                avatar="https://i.imgur.com/4poldXr.png"
+                image="https://source.unsplash.com/random"
+            />
         </div>
     )
 }
