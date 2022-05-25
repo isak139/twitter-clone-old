@@ -1,9 +1,23 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Post from './Post'
 import "./Timeline.css"
 import TweetBox from './TweetBox.js'
+import db from "../../firebase.js"
+import { collection, onSnapshot, orderBy, query, } from "firebase/firestore"
+import FlipMove from 'react-flip-move'
 
 function Timeline() {
+    const [posts, setPosts] = useState([]);
+
+    useEffect(() => {
+        const postData = collection(db, "posts");
+        const q = query(postData, orderBy("timestamp", "desc"));
+        //データをリアルタイムで取得
+        onSnapshot(q, (snapshot) => {
+            setPosts(snapshot.docs.map((doc) => doc.data()))
+        })
+    }, []);
+
     return (
         <div className='timeline'>
             {/* Header */}
@@ -13,14 +27,17 @@ function Timeline() {
             {/* TweetBox */}
             <TweetBox />
             {/* Post */}
-            <Post
-                displayName="テストテスト"
-                username="testtest"
-                verified={true}
-                text="始めてのツイート"
-                avatar="https://i.imgur.com/4poldXr.png"
-                image="https://source.unsplash.com/random"
-            />
+            <FlipMove>
+                {posts.map((post) => (<Post
+                    key={post.text} /*後でuuidとかに変える*/
+                    displayName={post.displayName}
+                    username={post.username}
+                    verified={post.verified}
+                    text={post.text}
+                    avatar={post.avatar}
+                    image={post.image}
+                />))}
+            </FlipMove>
         </div>
     )
 }
