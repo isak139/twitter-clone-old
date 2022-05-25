@@ -13,8 +13,8 @@ function Widgets() {
             <div className='widgets_widgetContainer'>
                 <h2>いまどうしてる？</h2>
                 <TwitterTweetEmbed tweetId={'1529102712100769792'} />
-                <TwitterTimelineEmbed sourceType='profile' screenName='tan_tsubo01' options={{ height: 400 }} />
-                <TwitterShareButton url='https://twitter.com/tan_tsubo01' options={{ text: 'react.jsによるTwitter Clone', via: 'tan_tsubo01' }} />
+                <TwitterTimelineEmbed sourceType='profile' screenName='Twitter' options={{ height: 400 }} />
+                <TwitterShareButton url='https://twitter.com/tan_tsubo01' options={{ text: 'react.jsによるTwitter Clone' }} />
             </div>
         </div>
     )
