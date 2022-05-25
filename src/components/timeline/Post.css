@@ -21,7 +21,7 @@ p {
 .post_footer {
     display: flex;
     justify-content: space-between;
-    margin-top: 10px;
+    padding:  10px;
 }
 
 .post_headerDescription {
